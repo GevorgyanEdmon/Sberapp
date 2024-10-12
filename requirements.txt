@@ -4,4 +4,4 @@ transformers
 datasets
 nltk
 natasha
-transformers
+sentencepiece
