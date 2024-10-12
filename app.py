@@ -2,17 +2,23 @@ import streamlit as st
 import pandas as pd
 from transformers import pipeline, AutoModelForSequenceClassification, AutoTokenizer
 
+#  Добавляем  декоратор  @st.cache_data
+@st.cache_data
+def  load_data():
+    df  =  pd.read_csv('labeled_reviews.csv')
+    return  df
+
 # Название приложения
 st.title("Анализатор отзывов о Сбербанке")
 
 # Форма для ввода отзыва
-user_review = st.text_area("Введите отзыв:", height=200) # Увеличиваем высоту поля ввода
+user_review = st.text_area("Введите отзыв:", height=200)
 
 # Кнопки для выбора анализа
 analysis_type = st.radio("Выберите тип анализа:", ("Классифицировать", "Определить сентимент"))
 
-# Загружаем размеченные данные
-df = pd.read_csv('labeled_reviews.csv')
+# Загружаем размеченные данные с помощью load_data()
+df  =  load_data()
 # Определяем категории
 categories = df['category'].unique().tolist()
 
