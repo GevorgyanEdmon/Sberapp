@@ -1,6 +1,6 @@
 streamlit
 pandas
-transformers
+transformers[torch]
 datasets
 nltk
 natasha
